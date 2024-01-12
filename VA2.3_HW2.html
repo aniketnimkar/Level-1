@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <label>Choose a season:</label>
+  <select id="seasonSelect">
+    <option value="Spring">Spring</option>
+    <option value="Summer">Summer</option>
+    <option value="Fall">Fall</option>
+    <option value="Winter">Winter</option>
+  </select>
+  <button id="displayWeatherBtn">Display Tipical Weather</button>
+  <p id="showWeather"></p>
+
+  <label>Choose a Movie genre:</label>
+  <select id="movieSelect">
+    <option value="ScienceFiction">Science Fiction</option>
+    <option value="Mystery">Mystery</option>
+    <option value="Romance">Romance</option>
+  </select>
+  <button id="displayMovieBtn">Display Movie Recommendation</button>
+  <p id="showMovie"></p>
+
+  <label>Select a Pet:</label>
+  <select id="selectPet">
+    <option value="Dog">Dog</option>
+    <option value="Cat">Cat</option>
+    <option value="Fish">Fish</option>
+  </select>
+  <button id="displayPetBtn">Display fun fact</button>
+  <p id="petResult"></p>
+
+  <label>Choose a musical instrument:</label>
+  <select id="selectInstrument">
+    <option value="Piano">Piano</option>
+    <option value="Guitar">Guitar</option>
+    <option value="Violin">Violin</option>
+  </select>
+  <p id="factResult"></p>
+
+  <label>Choose a planet:</label>
+  <select id="selectPlanet">
+    <option value="Earth">Earth</option>
+    <option value="Mars">Mars</option>
+    <option value="Jupiter">Jupiter</option>
+  </select>
+  <button id="displayPlanetBtn">Display Planet fact</button>
+  <p id="planetResult"></p>
+  <script>
+    const seasonSelect = document.getElementById("seasonSelect");
+    const displayWeatherBtn = document.getElementById("displayWeatherBtn");
+    const showWeather = document.getElementById("showWeather");
+
+    displayWeatherBtn.addEventListener("click", function () {
+      const selectedWeather = seasonSelect.value
+      const info = {
+        Spring: "Mild temperatures and blooming flowers.",
+        Summer: "Hot temperatures and sunny days.",
+        Fall: "Cooler temperatures and falling leaves",
+        Winter: "Cold temperatures and snowfall."
+      }
+      showWeather.textContent = `Typical Weather: ${info[selectedWeather]}`
+      console.log(`${info[selectedWeather]}`)
+    })
+
+    const movieSelect = document.getElementById("movieSelect");
+    const displayMovieBtn = document.getElementById("displayMovieBtn");
+    const showMovie = document.getElementById("showMovie");
+
+    displayMovieBtn.addEventListener("click", function () {
+      const selectedMovie = movieSelect.value
+
+      const movies = {
+        ScienceFiction: "Dune",
+        Mystery: "Gone Girl",
+        Romance: "Pride and Prejudice"
+      }
+      showMovie.textContent = `movie Recommendation: ${movies[selectedMovie]}`
+    })
+
+    const selectPet = document.getElementById("selectPet")
+    const displayPetBtn = document.getElementById("displayPetBtn")
+    const petResult = document.getElementById("petResult")
+
+    displayPetBtn.addEventListener("click", function () {
+      const selectedpet = selectPet.value;
+      const pets = {
+        Dog: "Dogs are loyal and friendly companions.",
+        Cat: "Cats are independent and playful",
+        Fish: "Fish are the most diverse group of vertebrates."
+      }
+      petResult.textContent = `Common Greeting: ${pets[selectedpet]}`
+    })
+
+    const selectInstrument = document.getElementById("selectInstrument")
+    const factResult = document.getElementById("factResult")
+    selectInstrument.addEventListener("change", function () {
+      const selectedInstrument = selectInstrument.value;
+      const Instrument = {
+        Piano: "The piano creates harmonious music through its keys.",
+        Guitar: "The Guitar produces melodic tones with its strings.",
+        Violin: "The violin produces sweet and expressive sounds."
+      }
+      factResult.textContent = `Sound: ${Instrument[selectedInstrument]}`
+    })
+
+    const selectPlanet = document.getElementById("selectPlanet")
+    const displayPlanetBtn = document.getElementById("displayPlanetBtn")
+    const planetResult = document.getElementById("planetResult")
+
+    displayPlanetBtn.addEventListener("click", function () {
+      const selectedplanet = selectPlanet.value;
+      const planets = {
+        Earth: "Earth is the only known planet with life.",
+        Mars: "Mars is often called the \"Red planet\" due to its colr.",
+        Jupiter: "Jupiter is the largest planet in our solar system."
+      }
+      planetResult.textContent = `Common Greeting: ${planets[selectedplanet]}`
+    })
+  </script>
+</body>
+
+</html>

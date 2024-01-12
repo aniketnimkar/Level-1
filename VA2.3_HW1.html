@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <label>Choose a movie genre:</label>
+  <select id="selectMovie">
+    <option value="Comedy">Comedy</option>
+    <option value="Drama">Drama</option>
+    <option value="Action">Action</option>
+  </select>
+  <p id="movieResult"></p>
+
+  <label>Select a weather condition:</label>
+  <select id="selectWeather">
+    <option value="Sunny">Sunny</option>
+    <option value="Rainy">Rainy</option>
+    <option value="Snowy">Snowy</option>
+  </select>
+  <p id="weatherResult"></p>
+
+  <label>Select a language:</label>
+  <select id="selectLangauge">
+    <option value="English">English</option>
+    <option value="Spanish">Spanish</option>
+    <option value="French">French</option>
+  </select>
+  <button id="displayGreetingBtn">Display Greeting</button>
+  <p id="greetingResult"></p>
+
+  <label>Select a Musical Instrument:</label>
+  <select id="selectInstrument">
+    <option value="Piano">Piano</option>
+    <option value="Guitar">Guitar</option>
+    <option value="Violin">Violin</option>
+  </select>
+  <button id="displayFactBtn">Display Fun Fact</button>
+  <p id="factResult"></p>
+
+  <label>Select a Pet:</label>
+  <select id="selectPet">
+    <option value="Dog">Dog</option>
+    <option value="Cat">Cat</option>
+    <option value="Fish">Fish</option>
+  </select>
+  <button id="displayPetBtn">Display pet Description</button>
+  <p id="petResult"></p>
+
+  <script>
+    const selectMovie = document.getElementById("selectMovie");
+    const movieResult = document.getElementById("movieResult");
+
+    selectMovie.addEventListener("change", function () {
+      const selectedmovie = selectMovie.value
+      const movies = {
+        Comedy: "Superbad",
+        Drama: "The Shawshank Redemption",
+        Action: "The Dark Knight"
+      }
+      movieResult.textContent = `Recommended Action Movie ${movies[selectedmovie]}`
+    })
+
+    const selectWeather = document.getElementById("selectWeather");
+    const weatherResult = document.getElementById("weatherResult");
+
+    selectWeather.addEventListener("change", function () {
+      const selectedWeather = selectWeather.value;
+      const suggestions = {
+        Sunny: "Picnic in the park",
+        Rainy: "Movie day indoors",
+        Snowy: "Build a snowman"
+      }
+      weatherResult.textContent = `Activity Suggestion: ${suggestions[selectedWeather]}`
+    })
+
+    const selectLangauge = document.getElementById("selectLangauge")
+    const displayGreetingBtn = document.getElementById("displayGreetingBtn")
+    const greetingResult = document.getElementById("greetingResult")
+
+    displayGreetingBtn.addEventListener("click", function () {
+      const selectLang = selectLangauge.value;
+      const langs = {
+        English: "Hello",
+        Spanish: "Spanish",
+        French: "Bonjour!"
+      }
+      greetingResult.textContent = `Common Greeting: ${langs[selectLang]}`
+    })
+
+    const selectInstrument = document.getElementById("selectInstrument")
+    const displayFactBtn = document.getElementById("displayFactBtn")
+    const factResult = document.getElementById("factResult")
+    displayFactBtn.addEventListener("click", function () {
+      const selectedInstrument = selectInstrument.value;
+      const Instrument = {
+        Piano: "The Piano Has 88 Keys.",
+        Guitar: "The Guitar is one of the most popular Instrument in the world.",
+        Violin: "The violin is a string instrument known for its sweet sound."
+      }
+      factResult.textContent = `Fun fact: ${Instrument[selectedInstrument]}`
+    })
+
+    const selectPet = document.getElementById("selectPet")
+    const displayPetBtn = document.getElementById("displayPetBtn")
+    const petResult = document.getElementById("petResult")
+
+    displayPetBtn.addEventListener("click", function () {
+      const selectedpet = selectPet.value;
+      const pets = {
+        Dog: "Dogs are loyal and friendly companions.",
+        Cat: "Cats are independent and playful",
+        Fish: "Fish are low-maintenance and peaceful pets."
+      }
+      petResult.textContent = `Common Greeting: ${pets[selectedpet]}`
+    })
+  </script>
+</body>
+
+</html>
