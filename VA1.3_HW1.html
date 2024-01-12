@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <label for="bookInput">Enter your favorite book list:</label>
+  <textarea id="bookInput"></textarea>
+  <button id="displayBtn">Display Book List</button>
+  <p id="showBooklist"></p>
+
+  <label for="recipeInput">Enter a Recipe:</label>
+  <textarea id="recipeInput"></textarea>
+  <button id="recipeDisplayBtn">Display Recipe</button>
+  <p id="showIngredients"></p>
+  <p id="showInstruction"></p>
+
+  <label for="bioInput">Enter your personal bio:</label>
+  <textarea id="bioInput"></textarea>
+  <button id="displayBioBtn">Display Bio</button>
+  <p id="showBio"></p>
+
+  <label for="goalInput">Enter your list of goals:</label>
+  <textarea id="goalInput"></textarea>
+  <button id="displayGoalBtn">Display Goals</button>
+  <p id="showGoals"></p>
+
+  <label for="storyInput">Enter your story or anecdote:</label>
+  <textarea id="storyInput"></textarea>
+  <button id="displayStoryBtn">Display Story</button>
+  <p id="showStory"></p>
+
+  <script>
+    const bookInput = document.getElementById("bookInput")
+    const displayBtn = document.getElementById("displayBtn")
+    const showBooklist = document.getElementById("showBooklist")
+
+    displayBtn.addEventListener("click", function () {
+      const books = bookInput.value.split(', ')
+      showBooklist.textContent = `Your favorite books: ${books}`;
+    })
+
+    const recipeInput = document.getElementById("recipeInput");
+    const recipeDisplayBtn = document.getElementById("recipeDisplayBtn");
+    const showIngredients = document.getElementById("showIngredients");
+    const showInstruction = document.getElementById("showInstruction")
+
+    recipeDisplayBtn.addEventListener("click", function () {
+      const instruction = recipeInput.value.split("\n\n")
+      const ingredients = instruction[0];
+      const instructions = instruction[1];
+
+      showIngredients.innerHTML = `<strong>Ingredients</strong>:<br> ${ingredients}`
+
+      console.log(instructions)
+      showInstruction.innerHTML = `<strong>Instructions:</strong><br> ${instructions}`
+
+      console.log(instruction)
+    })
+
+    const bioInput = document.getElementById("bioInput");
+    const displayBioBtn = document.getElementById("displayBioBtn");
+    const showBio = document.getElementById("showBio");
+
+    displayBioBtn.addEventListener("click", function () {
+      const bio = bioInput.value
+      showBio.innerHTML = `Your personal bio: ${bio}`
+    })
+
+    const goalInput = document.getElementById("goalInput");
+    const displayGoalBtn = document.getElementById("displayGoalBtn");
+    const showGoals = document.getElementById("showGoals");
+    displayGoalBtn.addEventListener("click", function () {
+      const goal = goalInput.value.split('.').join('.')
+      showGoals.textContent = `Enter your list of goals: ${goal}`;
+    })
+
+
+    const storyInput = document.getElementById("storyInput");
+    const displayStoryBtn = document.getElementById("displayStoryBtn");
+    const showStory = document.getElementById("showStory");
+    displayStoryBtn.addEventListener("click", function () {
+      const story = storyInput.value
+      showStory.innerHTML = `Enter a story or anecdote: ${story}`
+    })
+  </script>
+</body>
+
+</html>

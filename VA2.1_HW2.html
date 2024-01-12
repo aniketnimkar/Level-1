@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <lable>Program 1: Tick the Checkbox below to agree to the terms:</lable>
+  <br>
+  <input type="checkbox" id="agreementCheckbox" name="agreement" value="agree" />I agree to the terms and condition.
+  <p id="showAgreement"></p>
+  <lable>Program 2: Select multiple food allergies:</lable>
+  <br>
+  <input type="checkbox" name="allergies" value="dairy" /> Dairy
+  <input type="checkbox" name="allergies" value="nuts" /> Nuts
+  <input type="checkbox" name="allergies" value="gluten" /> Gluten
+  <button id="displayAllergiesBtn">Display Selected Food Allergies</button>
+  <p id="ShowAllergies"></p>
+
+  <lable>Program 3: Choose Multiple travel destinations:</lable>
+  <br>
+  <input type="checkbox" name="city" value="Paris" /> Paris
+  <input type="checkbox" name="city" value="New York" /> New York
+  <input type="checkbox" name="city" value="Tokyo" /> Tokyo
+  <button id="displayCityBtn">display Selected Trevel Destination</button>
+  <p id="ShowCity"></p>
+
+  <label>Program 4: Select Multiple sports:</label>
+  <input type="checkbox" name="sports" value="soccer" /> Soccer
+  <input type="checkbox" name="sports" value="basketball" /> Basketball
+  <input type="checkbox" name="sports" value="Tennis" /> Tennis
+  <button id="sportsBtn">Display Selected Sports</button>
+  <p id="sportsResult"></p>
+
+  <label>Program 5: Choose multiple clothing colors:</label>
+  <input type="checkbox" name="color" value="black" /> Black
+  <input type="checkbox" name="color" value="white" /> White
+  <input type="checkbox" name="color" value="blue" /> Blue
+  <button id="displayColorBtn">Display Selected Clothing Colors</button>
+  <p id="showColors"></p>
+
+  <label>Program 6: Choose multiple social media platforms:</label>
+  <input type="checkbox" name="sm" value="facebook" /> Facebook
+  <input type="checkbox" name="sm" value="twitter" /> Twitter
+  <input type="checkbox" name="sm" value="instagram" /> Instagram
+  <button id="displayMediaBtn">Display Selected Social Media Platforms</button>
+  <p id="showMedia"></p>
+
+  <script>
+    const agreementCheckbox = document.getElementById("agreementCheckbox")
+    const showAgreement = document.getElementById("showAgreement")
+
+    agreementCheckbox.addEventListener("change", function () {
+      if (agreementCheckbox.checked) {
+        showAgreement.textContent = "User Agree to Terams"
+      } else {
+        showAgreement.textContent = ""
+      }
+    })
+
+    const allergiesCheckbox = document.getElementsByName("allergies")
+    const displayAllergiesBtn = document.getElementById("displayAllergiesBtn")
+    const ShowAllergies = document.getElementById("ShowAllergies")
+
+    displayAllergiesBtn.addEventListener("click", function () {
+      const selectedAllergies = []
+
+      for (let i = 0; i < allergiesCheckbox.length; i++) {
+        if (allergiesCheckbox[i].checked) {
+          selectedAllergies.push(allergiesCheckbox[i].value)
+        }
+      }
+
+      if (selectedAllergies.length > 0) {
+        ShowAllergies.textContent = `Selected Food Allergies: ${selectedAllergies.join(", ")}`
+      } else {
+        ShowAllergies.textContent = `Please select at least one food allergy`
+      }
+    })
+
+    const cityCheckbox = document.getElementsByName("city")
+    const displayCityBtn = document.getElementById("displayCityBtn")
+    const ShowCity = document.getElementById("ShowCity")
+
+    displayCityBtn.addEventListener("click", function () {
+      const selectedCity = []
+      for (let i = 0; i < cityCheckbox.length; i++) {
+        if (cityCheckbox[i].checked) {
+          selectedCity.push(cityCheckbox[i].value)
+        }
+      }
+      if (selectedCity.length > 0) {
+        ShowCity.textContent = `Selected Treavel Destination: ${selectedCity.join(", ")}`
+      } else {
+        ShowCity.textContent = `Please select at least one Treavel Destination.`
+      }
+    })
+
+    const sportCheckBox = document.getElementsByName("sports")
+    const sportsResult = document.getElementById("sportsResult")
+    const sportsBtn = document.getElementById("sportsBtn");
+
+    for (let i = 0; i < sportCheckBox.length; i++) {
+      sportCheckBox[i].addEventListener("change", function () {
+        const selectedSports = []
+
+        for (let j = 0; j < sportCheckBox.length; j++) {
+          if (sportCheckBox[j].checked) {
+            selectedSports.push(sportCheckBox[j].value)
+          }
+        }
+
+        sportsBtn.addEventListener("click", function () {
+          if (selectedSports.length > 0) {
+            sportsResult.textContent = `Selected Sports:${selectedSports.join(", ")}`
+          } else {
+            sportsResult.textContent = `Please select at least one Sport.`
+          }
+        })
+      })
+    }
+
+    const colorCheckbox = document.getElementsByName("color")
+    const displayColorBtn = document.getElementById("displayColorBtn")
+    const ShowColors = document.getElementById("showColors")
+    displayColorBtn.addEventListener("click", function () {
+      const selectedColors = []
+      for (let i = 0; i < colorCheckbox.length; i++) {
+        if (colorCheckbox[i].checked) {
+          selectedColors.push(colorCheckbox[i].value)
+        }
+      }
+      if (selectedColors.length > 0) {
+        ShowColors.textContent = `Selected Clothing Colors: ${selectedColors.join(", ")}`
+      } else {
+        ShowColors.textContent = `Please select at least one Clothing Color`
+      }
+    })
+
+    const mediaCheckbox = document.getElementsByName("sm")
+    const displayMediaBtn = document.getElementById("displayMediaBtn");
+    const showMedia = document.getElementById("showMedia");
+
+    displayMediaBtn.addEventListener("click", function () {
+      const selectedMedia = []
+      for (let i = 0; i < mediaCheckbox.length; i++) {
+        if (mediaCheckbox[i].checked) {
+          selectedMedia.push(mediaCheckbox[i].value)
+        }
+      }
+      if (selectedMedia.length > 0) {
+        showMedia.textContent = `Selected social Media Platform: ${selectedMedia.join(", ")} `
+      } else {
+        showMedia.textContent = `Please select at least one Social Media Platform`
+      }
+    })
+  </script>
+</body>
+
+</html>

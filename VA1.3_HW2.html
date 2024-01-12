@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <label for="reviewInput">Enter your Book review:</label>
+  <textarea id="reviewInput"></textarea>
+  <button id="displayReviewBtn">Display Book Review</button>
+  <p id="showReview"></p>
+
+  <label for="bioInput">Enter your personal bio:</label>
+  <textarea id="bioInput"></textarea>
+  <button id="displayBioBtn">Display Bio</button>
+  <p id="showBio"></p>
+
+  <label for="diaryInput">Enter your personal bio:</label>
+  <textarea id="diaryInput"></textarea>
+  <button id="displayDiaryBtn">Display Diary Entry</button>
+  <p id="showDiary"></p>
+
+
+  <script>
+    const reviewInput = document.getElementById("reviewInput");
+    const displayReviewBtn = document.getElementById("displayReviewBtn");
+    const showReview = document.getElementById("showReview");
+
+    displayReviewBtn.addEventListener("click", function () {
+      const book = reviewInput.value
+      showReview.innerHTML = `Your book review: ${book}`
+    })
+
+    const bioInput = document.getElementById("bioInput");
+    const displayBioBtn = document.getElementById("displayBioBtn");
+    const showBio = document.getElementById("showBio");
+
+    displayBioBtn.addEventListener("click", function () {
+      const bio = bioInput.value
+      showBio.style.fontStyle = "italic";
+      showBio.innerHTML = `${bio}`
+    })
+
+    const diaryInput = document.getElementById("diaryInput");
+    const displayDiaryBtn = document.getElementById("displayDiaryBtn");
+    const showDiary = document.getElementById("showDiary");
+
+    displayDiaryBtn.addEventListener("click", function () {
+      const diary = diaryInput.value
+      const currentDateTime = new Date().toLocaleString();
+      showDiary.innerHTML = `<p><strong>${currentDateTime}</strong></p> <p>${diary}</p>`
+    })
+  </script>
+</body>
+
+</html>

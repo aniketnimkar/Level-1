@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <label for="inputJS">What is JavaScript?</label>
+  <textarea id="inputJS" rows="7" cols="50"></textarea>
+  <button id="displayAnsBtn">Display Answer</button>
+  <button id="countWordsBtn">Count Words</button>
+  <p id="showOutput"></p>
+  <p id="showReview"></p>
+
+  <label for="inputTodos">List Todos:</label>
+  <textarea id="inputTodos" rows="7" cols="50"></textarea>
+  <button id="displayTodosBtn">Display Todos</button>
+  <button id="countTodosBtn">Count Todos</button>
+  <p id="showTodos"></p>
+
+  <label for="inputPass">Enter Password:</label>
+  <input id="inputPass"></input>
+  <button id="displayPassBtn">Display Password</button>
+  <button id="checkPassBtn">Check Password</button>
+  <p id="showPass"></p>
+
+
+  <script>
+    const inputJs = document.querySelector("#inputJS");
+    const displayAnsBtn = document.querySelector("#displayAnsBtn");
+    const countWordsBtn = document.querySelector("#countWordsBtn");
+    const showOutput = document.querySelector("#showOutput");
+    const showReview = document.querySelector("#showReview");
+
+
+    displayAnsBtn.addEventListener("click", function () {
+      const js = inputJs.value;
+      // Reset styles and content
+      showOutput.style.color = "";
+      showReview.style.color = "";
+      showReview.textContent = "";
+      // Display answer only
+      showOutput.textContent = `Your Answer: ${js}`;
+    });
+
+    countWordsBtn.addEventListener("click", function () {
+      const js = inputJs.value.split(" ");
+      if (js.length >= 7) {
+        showOutput.style.color = "red";
+        showReview.style.color = "red";
+        showReview.textContent = `Word count exceeding.`;
+      } else {
+        showOutput.style.color = "green";
+        showReview.style.color = "green";
+        showReview.textContent = `Good.`;
+      }
+    });
+
+    const inputTodos = document.querySelector("#inputTodos");
+    const displayTodosBtn = document.querySelector("#displayTodosBtn");
+    const countTodosBtn = document.querySelector("#countTodosBtn");
+    const showTodos = document.querySelector("#showTodos");
+    const showCountTodos = document.querySelector("#showCountTodos");
+
+    displayTodosBtn.addEventListener("click", function () {
+      const input = inputTodos.value.split(", ").join(", ")
+      showTodos.textContent = `Your Todos: ${input}`
+    })
+
+    countTodosBtn.addEventListener("click", function () {
+      const input = inputTodos.value.split(", ");
+      showTodos.style.color = "green";
+      showTodos.textContent = `Total number of Todos: ${input.length}`
+    })
+
+    const inputPass = document.querySelector("#inputPass");
+    const displayPassBtn = document.querySelector("#displayPassBtn");
+    const checkPassBtn = document.querySelector("#checkPassBtn");
+    const showPass = document.querySelector("#showPass");
+
+
+    displayPassBtn.addEventListener("click", function () {
+      const input = inputPass.value
+      showPass.textContent = `Your Password: ${input}`
+    })
+    checkPassBtn.addEventListener("click", function () {
+      const input = inputPass.value;
+
+      if (input.length > 5 && (input.includes("@") || input.includes("!") || input.includes("$"))) {
+        showPass.textContent = `Password Accepted.`
+        showPass.style.color = 'green';
+      } else {
+        showPass.textContent = 'Password must have more than 5 characters and include @, !, or $ symbol';
+        showPass.style.color = 'red';
+      }
+    })
+  </script>
+</body>
+
+</html>
