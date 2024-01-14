@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Food Details</title>
+</head>
+
+<body>
+  <header>
+    <a href="index.html">MyHeatlth</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="calorie.html">Calories</a></li>
+      </ul>
+    </nav>
+    <h1>Calorie Details</h1>
+  </header>
+  <main>
+    <section id="calorieDetail"></section>
+  </main>
+  <footer>&copy; 2023 MyHealth. All rights reserved.</footer>
+  <script>
+    let foods = [{
+        id: "1",
+        mealType: "Breakfast",
+        item: "Dosa",
+        calories: "200 Cal"
+      },
+      {
+        id: "2",
+        mealType: "Lunch",
+        item: "DalRice",
+        calories: "250 Cal"
+      },
+      {
+        id: "3",
+        mealType: "Dinner",
+        item: "DalRoti",
+        calories: "350 Cal"
+      }
+    ]
+
+    function getPrarameterById(id) {
+      let url = new URL(window.location.href)
+      return url.searchParams.get(id)
+    }
+    let foodId = getPrarameterById('id');
+
+    let food;
+    for (let i = 0; i < foods.length; i++) {
+      if (foods[i].id === foodId) {
+        food = foods[i]
+
+      }
+    }
+    if (food) {
+      let foodDetailElement = document.getElementById('calorieDetail');
+
+      foodDetailElement.innerHTML = `
+         <h2>${food.mealType}</h2>
+         <ul>
+          <li>Meal:${food.mealType} </li>
+          <li>Item:${food.item} </li>
+          <li>Calories:${food.calories} </li>
+         </ul>
+         `
+    } else {
+      document.getElementById('foodDetails').innerHTML = "Food Not Found."
+    }
+  </script>
+
+</body>
+
+</html>
