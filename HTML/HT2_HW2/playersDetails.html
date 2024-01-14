@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Players Database</title>
+</head>
+
+<body>
+  <header>
+    <a href="index.html">Players Dayabase</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="player.html">players</a></li>
+        <li><a href="report.html">Report</a></li>
+      </ul>
+    </nav>
+    <h1>Players Details</h1>
+  </header>
+  <main>
+    <section id="playerDetails"></section>
+  </main>
+  <footer>&copy; 2023 Company Name. All rights reserved.</footer>
+
+  <script>
+    let players = [{
+        id: "1",
+        Country: "India",
+        Role: "Batsman",
+        side: "Left"
+      },
+      {
+        id: "2",
+        Country: "Austraila",
+        Role: "Batsman",
+        side: "Right"
+      },
+      {
+        id: "3",
+        Country: "Newzeland",
+        Role: "Baller",
+        side: "Left"
+      },
+    ]
+
+    function getParameterById(id) {
+      let url = new URL(window.location.href)
+      return url.searchParams.get(id)
+    }
+    let playersId = getParameterById('id')
+
+    let player;
+    for (let i = 0; i < players.length; i++) {
+      if (players[i].id === playersId) {
+        player = players[i]
+      }
+    }
+
+    if (player) {
+      let playerDetailElement = document.getElementById('playerDetails');
+      playerDetailElement.innerHTML = `
+          <h2>Player ${player.id}</h2>
+          <p><strong>Country:</strong> ${player.Country}</p>
+          <p><strong>Role:</strong> ${player.Role}</p>
+          <p><strong>Side:</strong> ${player.side}</p>
+          `
+    } else {
+      document.getElementById('playerDetails').innerHTML = "Player not found"
+    }
+  </script>
+
+
+</body>
+
+</html>
