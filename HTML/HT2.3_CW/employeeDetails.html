@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Employee Details</title>
+</head>
+
+<body>
+  <header>
+    <a href="index.html">Company Logo</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="employee.html">Employee</a></li>
+      </ul>
+    </nav>
+    <h1>Employee Deta</h1>
+  </header>
+  <main>
+    <section id="employeeDetail"></section>
+  </main>
+  <footer>&copy; 2023 Company Name. All rights reserved.</footer>
+
+  <script>
+    let employess = [{
+        id: "1",
+        name: "John Doe",
+        title: "Software Developer",
+        department: "IT"
+      },
+      {
+        id: "2",
+        name: "Jane smith",
+        title: "Designmer",
+        department: "Design"
+      },
+      {
+        id: "3",
+        name: "Bob Johnson",
+        title: "Project Manager",
+        department: "Management"
+      }
+    ]
+
+    function getParameterById(id) {
+      let url = new URL(window.location.href)
+
+      return url.searchParams.get(id)
+    }
+    let employeeId = getParameterById('id');
+
+    //find id in the data Objects
+    let employee;
+    for (let i = 0; i < employess.length; i++) {
+      if (employess[i].id === employeeId) {
+        employee = employess[i]
+      }
+    }
+    //display the details on the view
+    if (employee) {
+      let employeeDetailElement =
+        document.getElementById('employeeDetail');
+
+      employeeDetailElement.innerHTML = `
+        <h2>${employee.name}</h2>
+        <ul>
+        <li>Name: ${employee.name}</li>
+        <li>Designation: ${employee.title}</li> 
+        <li>Department: ${employee. department}</li>
+        </ul>
+        `
+    } else {
+      document.getElementById('employeeDetails').innerHTML = `Employee not Found.`
+    }
+  </script>
+
+</body>
+
+</html>
