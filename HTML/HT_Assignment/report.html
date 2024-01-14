@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>movie Database</title>
+</head>
+
+<body>
+  <header>
+    <a href="index.html">movies Dayabase</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="movie.html">Movies</a></li>
+        <li><a href="report.html">Report</a></li>
+      </ul>
+    </nav>
+    <h1>Movie Details</h1>
+  </header>
+  <main>
+    <section id="movieDetails"></section>
+  </main>
+  <footer>&copy; 2023 Company Name. All rights reserved.</footer>
+
+  <script>
+    let movies = [{
+        id: "1",
+        genre: "Action",
+        releaseDate: "2022-05-15",
+        director: "John Doe",
+        details: "A thrilling action-packed movie."
+      },
+      {
+        id: "2",
+        genre: "Comedy",
+        releaseDate: "2023-09-28",
+        director: "Jane Smith",
+        details: "A hilarious comedy film."
+      },
+      {
+        id: "3",
+        genre: "Drama",
+        releaseDate: "2023-02-10",
+        director: "Sam Johnson",
+        details: "An emotional and compelling drama."
+      }
+    ];
+
+    function getParameterById(id) {
+      let url = new URL(window.location.href)
+      return url.searchParams.get(id)
+    }
+    let moviesId = getParameterById('id')
+
+    let movie;
+    for (let i = 0; i < movies.length; i++) {
+      if (movies[i].id === moviesId) {
+        movie = movies[i]
+      }
+    }
+
+    if (movie) {
+      let movieDetailElement = document.getElementById('movieDetails');
+      movieDetailElement.innerHTML = `
+          <h2>Movie ${movie.id}</h2>
+          <p><strong>Genre:</strong> ${movie.genre}</p>
+          <p><strong>Details:</strong> ${movie.details}</p>
+          <p><strong>releaseDate:</strong> ${movie.releaseDate}</p>
+          <p><strong>Director:</strong> ${movie.director}</p>
+          `
+    } else {
+      document.getElementById('playerDetails').innerHTML = "Player not found"
+    }
+  </script>
+
+
+</body>
+
+</html>
