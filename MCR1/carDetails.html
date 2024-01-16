@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Details</title>
+</head>
+
+<body>
+  <header>
+    <a href="index.html">
+      <h1>CarZone</h1>
+    </a>
+    <ul>
+      <li>
+        <a href="index.html">Home</a>
+      </li>
+      <li>
+        <a href="cars.html">cars</a>
+      </li>
+      <li>
+        <a href="carBrands.html">Car Brands</a>
+      </li>
+      <li>
+        <a href="report.html">Report</a>
+      </li>
+    </ul>
+  </header>
+  <main>
+    <section id="carDetails">
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2023 Car Zone. All rights reserved. </p>
+  </footer>
+
+  <script>
+    let cars = [{
+        id: "1",
+        name: "Family Sedan",
+        model: "Sedan",
+        detail: "A comfortable family car with sleek design.",
+        manufacturer: "CarCo",
+        year: 2022,
+        color: "Blue",
+        price: 300000
+      },
+      {
+        id: "2",
+        name: "All-Terrain SUV",
+        model: "SUV",
+        detail: "An all-terrain vehicle with spacious interior.",
+        manufacturer: "AutoTech",
+        year: 2023,
+        color: "Silver",
+        price: 450000
+      },
+      {
+        id: "3",
+        name: "GreenDrive Electric",
+        model: "Electric",
+        detail: "An eco-friendly electric car with cutting-edge technology.",
+        manufacturer: "GreenDrive",
+        year: 2021,
+        color: "Green",
+        price: 500000
+      }
+    ];
+
+    function getCarById(id) {
+      let url = new URL(window.location.href);
+      return url.searchParams.get(id);
+    }
+    let carId = getCarById('id')
+    let car;
+    for (let i = 0; i < cars.length; i++) {
+      if (cars[i].id === carId) {
+        car = cars[i]
+      }
+    }
+    if (car) {
+      let carsDetailsElement = document.getElementById("carDetails");
+      carsDetailsElement.innerHTML = `
+      <h1>Car Details</h1>
+      <h2>${car.name}</h2>
+      <ul>
+      <li>Model ${car.model}</li>
+      <li>Detail: ${car.detail}</li>
+      <li>manufacturer: ${car.manufacturer}</li>
+      <li>Color: ${car.color}</li>
+      <li>Year: ${car.year}</li>
+      <li>Price: Rs. ${car.price}</li>
+      </ul>
+      `
+    }
+
+    console.log(car.model)
+  </script>
+</body>
+
+</html>

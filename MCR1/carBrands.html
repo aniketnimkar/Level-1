@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Brands</title>
+  <style>
+    /* ul {  
+    list-style-type: none;
+    } */
+  </style>
+</head>
+
+<body>
+
+
+  <script>
+    let carBrands = [{
+        id: "1",
+        name: "CarCo",
+        country: "United States",
+        founded: 1990,
+        headquarters: "Detroit, Michigan",
+        popularModels: ["Family Sedan", "Sporty Coupe", "Luxury SUV"]
+      },
+      {
+        id: "2",
+        name: "AutoTech",
+        country: "Germany",
+        founded: 1985,
+        headquarters: "Stuttgart",
+        popularModels: ["All-Terrain SUV", "Performance Sedan", "Convertible"]
+      },
+      {
+        id: "3",
+        name: "GreenDrive",
+        country: "Japan",
+        founded: 2005,
+        headquarters: "Tokyo",
+        popularModels: ["Electric", "Hybrid Compact", "Fuel-Efficient Hatchback"]
+      }
+    ];
+
+    let htmlContent = '';
+    htmlContent += `
+    <header>
+      <a href="index.html">
+        <h1>CarZone</h1>
+      </a>
+      <ul>
+        <li>
+          <a href="index.html">Home</a>
+        </li>
+        <li>
+          <a href="cars.html">cars</a>
+        </li>
+        <li>
+          <a href="carBrands.html">Car Brands</a>
+        </li>
+        <li>
+          <a href="report.html">Report</a>
+        </li>
+      </ul>
+    </header>
+    <h1>List of Car Brands</h1>
+    `
+
+
+    for (let i = 0; i < carBrands.length; i++) {
+      let brand = carBrands[i];
+      htmlContent += `
+
+      <ul>
+      <li><p><strong>${brand.name} (${brand.country})</strong></p></li>
+     <p><strong>Founded Year: </strong>${brand.founded}</p>
+      <p><strong>Headquarters: </strong>${brand.headquarters}</p>
+      <p><strong>Popular Models: </strong>${brand.popularModels}</p>
+      </ul>
+      `
+    }
+
+    htmlContent += `
+      <br>
+      <br>
+      <br>
+       <footer>
+      <p>&copy; 2023 Car Zone. All rights reserved. </p>
+    </footer>
+      `
+
+    document.body.innerHTML = htmlContent
+    console.log(brand.name)
+  </script>
+</body>
+
+</html>

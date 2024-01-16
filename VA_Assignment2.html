@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <form id="userDetailsForm">
+    <label for="userName"><strong> Name:</strong></label>
+    <input type="text" id="userName" />
+    <br><br>
+    <label for="userNumber"><strong>Number:</strong></label>
+    <input type="number" id="userNumber" />
+    <br><br>
+    <label for="userEmail"><strong>Email Id:</strong></label>
+    <input type="email" id="userEmail" />
+    <br><br>
+    <label><strong>Gender:</strong></label><br>
+    <label for="male"><input type="radio" name="gender" id="male" value="Male" />Male</label><br>
+    <label for="female"><input type="radio" name="gender" id="female" value="Female" />Female</label><br>
+    <label for="other"><input type="radio" name="gender" id="other" value="Other" />Other</label><br>
+    <br>
+    <label><strong>Are you college graduate?:</strong></label><br>
+    <label for="yes"><input type="radio" name="graduate" id="yes" value="Yes" />Yes</label><br>
+    <label for="no"><input type="radio" name="graduate" id="no" value="No" />No</label><br>
+    <label for="dropout"><input type="radio" name="graduate" id="dropout" value="Dropout" />Dropout</label><br><br>
+    <label for="userWrking"><strong>Are you working anywhere full-time or part-time?:</strong></label><br>
+    <select id="userWrking">
+      <option value="Working Full Time">Working Full Time</option>
+      <option value="Working Part Time">Working Part Time</option>
+      <option value="Not Working Anywhere">Not Working Anywhere</option>
+    </select>
+    <br><br>
+    <label for="userWebdev"><strong>Why do you want to learn web development?:</strong></label>
+    <textarea rows="5" cols="50" id="userWebdev"></textarea>
+    <br><br>
+    <label><strong>How did you come to know about us?</strong></label><br>
+    <label for="youtube"><input type="checkbox" name="media" id="youtube" value="Youtube" /> Youtube</label><br>
+    <label for="instagram"><input type="checkbox" name="media" id="instagram" value="Instagram" />Instagram</label><br>
+    <label for="linkedin"><input type="checkbox" name="media" id="linkedin" value="Linkedin" />Linkedin</label><br>
+    <label for="twitter"><input type="checkbox" name="media" id="twitter" value="Twitter" />Twitter</label><br>
+    <label for="friends"><input type="checkbox" name="media" id="friends" value="Friends and Family" />Friends and
+      Family</label><br>
+    <label for="others"><input type="checkbox" name="media" id="others" value="Others" />Others</label><br><br>
+    <label for="agreement"><strong><input type="checkbox" name="info" id="agreement"
+          value="I confirm that all information in this form is factually true." />I
+        confirm that all information in this form is factually true.</strong></label><br><br>
+    <input type="submit" value="Submit Details" />
+    <div id="formResult"></div>
+  </form>
+
+  <script>
+    const userDetailsForm = document.getElementById("userDetailsForm");
+
+    userDetailsForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const userName = document.getElementById("userName").value
+      const userNumber = document.getElementById("userNumber").value
+      const userEmail = document.getElementById("userEmail").value
+
+      const gender = document.querySelector('input[name="gender"]:checked').value
+      const graduate = document.querySelector('input[name="graduate"]:checked').value
+      const userWrking = document.getElementById("userWrking").value;
+      const userWebdev = document.getElementById("userWebdev").value;
+
+
+      const atIndex = email.indexOf("@");
+      const dotIndex = email.indexOf(".");
+
+      if (!(atIndex > 0 && dotIndex > atIndex)) {
+        alert("Enter a vaild email")
+        return;
+      }
+
+      const socialMediaCheckboxes = document.querySelectorAll('input[name="media"]:checked');
+      const selectedSocialMedia = [];
+      for (let i = 0; i < socialMediaCheckboxes.length; i++) {
+        selectedSocialMedia.push(socialMediaCheckboxes[i].value);
+      }
+
+      const userSubmitedResult = `
+       <h2>Details Submited:</h2>
+       <p><strong>Name:</strong>${userName}</p>
+       <p><strong>Phone Number:</strong>${userNumber}</p>
+       <p><strong>Email ID:</strong>${userEmail}</p>
+       <p><strong>Gender:</strong>${gender}</p>
+       <p><strong>Are you a college Graduate?:</strong>${graduate}</p>
+       <p><strong>Are you working anywhere full-time or Part-time?:</strong>${userWrking}</p>
+       <p><strong>Why do you want to learn web development?:</strong>${userWebdev}</p>
+       <p><strong>How did you come to know about us??:</strong>${selectedSocialMedia.join(", ")}</p>
+      `
+      const divElement = document.getElementById("formResult")
+      divElement.innerHTML = userSubmitedResult
+    })
+  </script>
+</body>
+
+</html>
