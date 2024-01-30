@@ -44,36 +44,58 @@
 
     function getParameterById(id) {
       let url = new URL(window.location.href)
-
       return url.searchParams.get(id)
-    }
-    let employeeId = getParameterById('id');
+      let employeeId = getParameterById('id')
 
-    //find id in the data Objects
-    let employee;
-    for (let i = 0; i < employess.length; i++) {
-      if (employess[i].id === employeeId) {
-        employee = employess[i]
+      let employee;
+      for (let i = 0; i < employess.length; i++) {
+        if (employess[i].id === employeeId) {
+          employee = employess[i]
+        }
       }
+      console.log(employee)
     }
-    //display the details on the view
-    if (employee) {
-      let employeeDetailElement =
-        document.getElementById('employeeDetail');
 
-      employeeDetailElement.innerHTML = `
-        <h2>${employee.name}</h2>
-        <ul>
-        <li>Name: ${employee.name}</li>
-        <li>Designation: ${employee.title}</li> 
-        <li>Department: ${employee. department}</li>
-        </ul>
-        `
-    } else {
-      document.getElementById('employeeDetails').innerHTML = `Employee not Found.`
-    }
+    //get id from URL
+    //find that id in database
+    //display the details on browser view
   </script>
 
 </body>
 
 </html>
+
+
+
+
+
+<!-- function getParameterById(id) {
+  let url = new URL(window.location.href)
+
+  return url.searchParams.get(id)
+}
+let employeeId = getParameterById('id');
+
+//find id in the data Objects
+let employee;
+for (let i = 0; i < employess.length; i++) {
+  if (employess[i].id === employeeId) {
+    employee = employess[i]
+  }
+}
+//display the details on the view
+if (employee) {
+  let employeeDetailElement =
+    document.getElementById('employeeDetail');
+
+  employeeDetailElement.innerHTML = `
+    <h2>${employee.name}</h2>
+    <ul>
+    <li>Name: ${employee.name}</li>
+    <li>Designation: ${employee.title}</li> 
+    <li>Department: ${employee. department}</li>
+    </ul>
+    `
+} else {
+  document.getElementById('employeeDetails').innerHTML = `Employee not Found.`
+} -->
