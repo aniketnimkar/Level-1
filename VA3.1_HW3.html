@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+  <header class="container py-4">
+    <h1>Poll Voting</h1>
+    John Doe:<input type="radio" name="people" id="john" value="John Doe" /><br><br>
+    Alex Willam:<input type="radio" name="people" id="alex" value="Alex Willam" /><br><br>
+    Prerana Nawar:<input type="radio" name="people" id="prerana" value="Prerana Nawar" /><br>
+    <br>
+    <button type="button" id="vote" class="btn btn-primary">Vote</button>
+    <br>
+    <h1>Result:</h1>
+    <ul id="winnerVotes" class="list-group"></ul>
+    <h2>Winner:</h2>
+    <div id="winningResult"></div>
+  </header>
+
+  <script>
+    const voteButton = document.getElementById('vote');
+    const winnerVotes = document.getElementById('winnerVotes');
+    const winningResult = document.getElementById('winningResult');
+    let johnVotes = 0;
+    let alexVotes = 0;
+    let preranaVotes = 0;
+
+    voteButton.addEventListener("click", function () {
+      const names = document.querySelector('input[name="people"]:checked');
+
+      if (names) {
+        countVotes(names.id);
+        updateResult(names.id);
+        updateWinner();
+      } else {
+        alert("Please select a candidate before voting.");
+      }
+    });
+
+    function countVotes(candidateId) {
+      if (candidateId === 'john') {
+        johnVotes++;
+      } else if (candidateId === 'alex') {
+        alexVotes++;
+      } else if (candidateId === 'prerana') {
+        preranaVotes++;
+      }
+    }
+
+    function updateResult(candidateId) {
+      const existingLi = document.getElementById(`${candidateId}Result`);
+
+      if (existingLi) {
+        existingLi.textContent = `${candidateId}: ${getVoteCount(candidateId)}`;
+      } else {
+        const paraElement = document.createElement("li");
+        paraElement.id = `${candidateId}Result`;
+        paraElement.textContent = `${candidateId}: ${getVoteCount(candidateId)}`;
+        paraElement.classList.add("list-group-item");
+        winnerVotes.appendChild(paraElement);
+      }
+    }
+
+    function getVoteCount(candidateId) {
+      if (candidateId === 'john') {
+        return johnVotes;
+      } else if (candidateId === 'alex') {
+        return alexVotes;
+      } else if (candidateId === 'prerana') {
+        return preranaVotes;
+      }
+    }
+
+    function updateWinner() {
+      let winners = [];
+      let maxVotes = Math.max(johnVotes, alexVotes, preranaVotes);
+
+      if (maxVotes === 0) {
+        winningResult.textContent = 'No votes yet';
+        return;
+      }
+
+      if (johnVotes === maxVotes) {
+        winners.push('John Doe');
+      }
+      if (alexVotes === maxVotes) {
+        winners.push('Alex Willam');
+      }
+      if (preranaVotes === maxVotes) {
+        winners.push('Prerana Nawar');
+      }
+
+      if (winners.length === 1) {
+        winningResult.textContent = `Winner: ${winners[0]} with ${maxVotes} votes`;
+      } else {
+        winningResult.textContent = `Tie between ${winners.join(', ')}`;
+      }
+    }
+  </script>
+</body>
+
+</html>
