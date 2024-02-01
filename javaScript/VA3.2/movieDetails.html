@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Movies Banner</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg text-secondary">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Movies Database</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="movies.html">Movies</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="report.html">Report</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="container" id="movieDetails">
+    </section>
+    <script>
+      movieData = [{
+          id: 1,
+          movie: "John Wick",
+          date: "2023-01-15",
+          director: "Chad Stahelski",
+          genre: "action"
+        },
+        {
+          id: 2,
+          movie: "Deadpool",
+          date: "2022-05-20",
+          director: "Tim Miller",
+          genre: "action"
+        },
+        {
+          id: 3,
+          movie: "The Hangover",
+          date: "2010-06-05",
+          director: "Todd Phillips",
+          genre: "comedy"
+        },
+        {
+          id: 4,
+          movie: "Inception",
+          date: "2010-07-16",
+          director: "Christopher Nolan",
+          genre: "drama"
+        },
+        {
+          id: 5,
+          movie: "Superbad",
+          date: "2007-08-17",
+          director: "Greg Mottola",
+          genre: "comedy"
+        },
+        {
+          id: 6,
+          movie: "The Dark Knight",
+          date: "2008-07-18",
+          director: "Christopher Nolan",
+          genre: "drama"
+        }
+      ]
+
+      function getParameterById(id) {
+        let url = new URL(window.location.href);
+        return url.searchParams.get(id);
+      }
+
+      let moviesId = getParameterById('id');
+      let movie;
+
+      for (let i = 0; i < movieData.length; i++) {
+        if (movieData[i].id === moviesId) {
+          movie = movieData[i];
+        }
+      }
+
+      if (movie) {
+        let movieDetailElement = document.getElementById('movieDetails');
+        movieDetailElement.innerHTML = `
+          <h1>Movie Details</h1>
+          <div class="card" style="width: 40rem;">
+            <div class="card-body">
+              <h2>Movie ${movie.id}</h2>
+              <p><strong>Genre:</strong> ${movie.genre}</p>
+              <p><strong>Details:</strong> ${movie.details}</p>
+            </div>
+          </div>
+        `;
+      } else {
+        document.getElementById('movieDetails').innerHTML = "<p>Movie not found</p>";
+      }
+    </script>
+  </main>
+</body>
+
+</html>
