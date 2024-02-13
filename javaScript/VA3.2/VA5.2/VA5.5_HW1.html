@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    type="text/css" />
+</head>
+
+<body class="container mt-4">
+  <h1>GET and POST</h1>
+  <section class="my-3">
+    <h2>GET Request</h2>
+    <button id="getDataBtn" class="btn btn-primary my-2">Get Data</button>
+    <div class="row g-4 my-2" id="getRequestContainer"></div>
+    <div id="getRequestErr"></div>
+  </section>
+
+  <section class="my-3">
+    <h2>Post Request</h2>
+    <form id="postForm">
+      <div class="py-2">
+        <label class="pb-2" for="name">Name:</label><br>
+        <input class="form-control" id="name" /><br>
+      </div>
+      <div class="py-2">
+        <label class="pb-2" for="message">Message:</label><br>
+        <textarea class="form-control" id="message"></textarea> <br><br>
+      </div>
+      <button type="submit" class="btn btn-success mt-2">Submit</button>
+    </form>
+    <div class="getDataContainer"></div>
+  </section>
+  <script>
+    const getDataBtn = document.querySelector('#getDataBtn');
+    const getRequestContainer = document.querySelector('#getRequestContainer');
+    const getRequestErr = document.querySelector('#getRequestErr');
+
+
+    getDataBtn.addEventListener("click", function () {
+      getRequestContainer.innerHTML = ''
+      fetch(apiUrl)
+        .then(function (response) {
+          return response.json()
+        }).then(function (data) {
+          if (data) {
+
+            const lastTenData = data.slice(-10)
+            for (let i = 0; i < lastTenData.length; i++) {
+              const col = document.createElement('div');
+              col.className = "col-12"
+
+              const card = document.createElement('div');
+              card.className = "card"
+
+              const cardBody = document.createElement('div');
+              cardBody.className = "card-body"
+
+              const h5 = document.createElement("h5")
+              h5.className = "card-title"
+              h5.textContent = `post ID: ${data[i]._id}`
+
+              const p = document.createElement("p");
+              p.className = "card-text";
+              p.textContent = JSON.stringify(data[i])
+
+              cardBody.appendChild(h5);
+              cardBody.appendChild(p)
+
+              card.appendChild(cardBody)
+              col.appendChild(card)
+              getRequestContainer.appendChild(col)
+            }
+          } else {
+            getRequestErr.textContent = "faild to fetch the data"
+          }
+        }).catch(function (error) {
+          getRequestErr.textContent = "An error occurred while getting the data."
+        })
+    })
+
+
+
+
+
+    const name = document.querySelector('#name');
+    const message = document.querySelector('#message');
+    const postForm = document.querySelector('#postForm');
+    const getDataContainer = document.querySelector('.getDataContainer');
+
+    const apiUrl = 'https://posts-student-neog.replit.app/posts'
+
+
+    postForm.addEventListener("submit", function (event) {
+      event.preventDefault()
+      const getAndPostData = {
+        name: name.value,
+        message: message.value
+      }
+
+      fetch(apiUrl, {
+        method: "POST",
+        body: JSON.stringify(getAndPostData),
+        headers: {
+          "Content-type": "application/json"
+        }
+      }).then(function (response) {
+        return response.json()
+      }).then(function (data) {
+        if (data && data.message) {
+          getDataContainer.innerHTML = JSON.stringify(data)
+        } else {
+          getDataContainer.textContent = '"Faild to add Message..'
+        }
+      }).catch(function (error) {
+        getDataContainer.textContent = "An error occured while adding Messages."
+      })
+
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    type="text/css" />
+</head>
+
+<body>
+  <div class="container mt-4">
+    <h1>Random Todos</h1>
+    <button id="getTodos" class="btn btn-primary">Get Random Todos</button>
+    <div id="showTodos" class="mt-4"></div>
+  </div>
+  <script>
+    const getTodos = document.querySelector("#getTodos");
+    const showTodos = document.querySelector("#showTodos");
+
+    const apiUrl = 'https://jsonplaceholder.typicode.com/todos?_limit=3';
+
+    getTodos.addEventListener("click", function () {
+
+      showTodos.innerHTML = `<div class='text-center'>Loading...</div>`;
+      fetch(apiUrl)
+        .then(function responseHandler(response) {
+          return response.json();
+        })
+        .then(function showData(data) {
+          console.log(data[0]);
+          if (data && data.length > 0) {
+            const randomTodos = [];
+            for (let i = 0; i < data.length; i++) {
+              let randomData =
+                `<div class="card mb-2" style="height: 5rem;"><div class="card-body"><strong>${data[i].title}</strong><p>${data[i].completed ? "Completed" : "Not Completed"}</p></div></div>`;
+              randomTodos.push(randomData);
+            }
+            const finalTodos = randomTodos.join('');
+            showTodos.innerHTML = finalTodos;
+          }
+        });
+    });
+  </script>
+</body>
+
+</html>
