@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css
+" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="container mt-3">
+    <h1>Movie Database</h1>
+    <section class="my-3">
+      <h2>GET Movies</h2>
+      <button class="btn btn-primary my-2" id="getMoviesBtn">Get Movies</button>
+      <div class="row g-3 my-2" id="getMoviesContainer"></div>
+      <div class="my-2" id="getMoviesError"></div>
+    </section>
+
+    <section class="my-3">
+      <h2>POST Movie</h2>
+      <form id="postMovieForm">
+        <div class="my-3">
+          <label class="form-label pb-1" for="title">Title:</label>
+          <input class="form-control" type="text" id="title" />
+        </div>
+
+        <div class="my-3">
+          <label class="form-label pb-1" for="releaseYear">Release Year:</label>
+          <input class="form-control" type="text" id="releaseYear" />
+        </div>
+
+        <div class="my-3">
+          <label class="form-label pb-1" for="selectGenre">Genre:</label>
+          <select class="form-select" id="selectGenre">
+            <option value="Action">Action</option>
+            <option value="Drama">Drama</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Romance">Romance</option>
+            <option value="Thriller">Thriller</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Sci-Fi">Sci-Fi</option>
+            <option value="Horror">Horror</option>
+            <option value="Sports">Sports</option>
+            <option value="Musical">Musical</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="my-3">
+          <label class="form-label pb-1" for="director">Director:</label>
+          <input class="form-control" type="text" id="director" />
+        </div>
+
+        <div class="my-3">
+          <label class="form-label pb-1" for="language">Language:</label>
+          <input class="form-control" type="text" id="language" />
+        </div>
+
+        <div class="my-3">
+          <label class="form-label pb-1" for="selectCountry">Country:</label>
+          <select class="form-select" id="selectCountry">
+            <option value="India">India</option>
+            <option value="USA">USA</option>
+            <option value="UK">UK</option>
+          </select>
+        </div>
+
+        <div class="my-3">
+          <label class="form-label pb-1" for="Rating">Rating:</label>
+          <input class="form-control" type="number" step="any" id="rating" />
+        </div>
+
+        <div class="my-3">
+          <label class="form-label pb-1" for="plot">Plot:</label>
+          <textarea class="form-control" id="plot"></textarea>
+        </div>
+
+        <div class="my-3">
+          <label for="form-label pb-1" for="awards">Awards:</label>
+          <input class="form-control" type="text" id="awards" />
+        </div>
+
+        <div class="my-3">
+          <label class="form-label pb-1" for="posterUrl">Poster URL:</label>
+          <input class="form-control" type="url" id="posterUrl" />
+        </div>
+
+        <div class="my-3">
+          <label class="form-label pb-1" for="trailerUrl">Trailer URL:</label>
+          <input class="form-control" type="url" id="trailerUrl" />
+        </div>
+
+        <button class="btn btn-success my-3" type="submit">Add Movie</button>
+
+      </form>
+      <div id="postMovieContainer"></div>
+    </section>
+  </div>
+
+  <script>
+    const getMoviesBtn = document.querySelector("#getMoviesBtn")
+    const getMoviesContainer = document.querySelector("#getMoviesContainer");
+    const getMoviesError = document.querySelector("#getMoviesError");
+
+    const postMovieForm = document.querySelector("#postMovieForm");
+    const title = document.querySelector("#title");
+    const releaseYear = document.querySelector("#releaseYear");
+    const selectGenre = document.querySelector("#selectGenre");
+    const director = document.querySelector("#director");
+    const language = document.querySelector("#language");
+    const selectCountry = document.querySelector("#selectCountry")
+    const rating = document.querySelector("#rating");
+    const plot = document.querySelector("#plot")
+    const awards = document.querySelector("#awards");
+    const posterUrl = document.querySelector("#posterUrl");
+    const trailerUrl = document.querySelector("#trailerUrl")
+    const postMovieContainer = document.querySelector("#postMovieContainer")
+
+    const apiUrl = "https://va-5-assignment-express-student-neog.replit.app/movies"
+
+    getMoviesBtn.addEventListener("click", function () {
+      getMoviesContainer.innerHTML = ""
+      fetch(apiUrl)
+        .then(function (response) {
+          return response.json()
+        }).then(function (data) {
+          if (data) {
+            for (let i = 0; i < data.length; i++) {
+              const col = document.createElement("div")
+              col.className = "col-12"
+
+              const card = document.createElement("div");
+              card.className = "card"
+
+              const cardBody = document.createElement("div");
+              cardBody.className = "card-body"
+
+              const h5 = document.createElement("h5");
+              h5.className = "card-title"
+              h5.textContent = `Movie ID: ${data[i]._id}`
+
+              const movieData = document.createElement("p");
+              movieData.className = "card-text"
+              let movieObj = {
+                actors: data[i].actors,
+                country: data[i].country,
+                _id: data[i]._id,
+                genre: data[i].genre,
+                releaseYear: data[i].releaseYear,
+                title: data[i].title,
+                director: data[i].director,
+                language: data[i].language,
+                rating: data[i].rating
+              }
+
+              movieData.innerHTML = `<pre>${JSON.stringify(movieObj, null, 2)}</pre>`
+
+              cardBody.appendChild(h5)
+              cardBody.appendChild(movieData)
+
+              card.appendChild(cardBody)
+              col.appendChild(card)
+              getMoviesContainer.appendChild(col)
+
+            }
+          } else {
+            getMoviesError.textContent = "Failed to fetch movies."
+          }
+        }).catch(function (error) {
+          getMoviesError.textContent = "An error occurred while getting the movies."
+        })
+    })
+
+    postMovieForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      const requestData = {
+        title: title.value,
+        releaseYear: releaseYear.value,
+        genre: selectGenre.value,
+        director: director.value,
+        language: language.value,
+        country: selectCountry.value,
+        rating: rating.value,
+        plot: plot.value,
+        awards: awards.value,
+        posterUrl: posterUrl.value,
+        trailerUrl: trailerUrl.value
+      }
+
+      fetch(apiUrl, {
+        method: "POST",
+        body: JSON.stringify(requestData),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).then(function (response) {
+        return response.json()
+      }).then(function (data) {
+        console.log(data)
+        if (data) {
+          postMovieContainer.textContent = "Movie added successfully."
+        } else {
+          postMovieContainer.textContent = "Failed to add movie."
+        }
+      }).catch(function (error) {
+        postMovieContainer.textContent = "An error occurred while adding movie."
+      })
+
+    })
+  </script>
+
+</body>
+
+</html>
