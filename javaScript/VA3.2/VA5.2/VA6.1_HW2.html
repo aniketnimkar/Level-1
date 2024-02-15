@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h1>Employee List</h1>
+  <ul id="EmployeeList"></ul>
+  <script>
+    const EmployeeList = document.querySelector('#EmployeeList')
+    const apiUrl = 'https://employee-management-backend-student-neog-ca.replit.app/employees'
+
+    function getEmployeeList() {
+      EmployeeList.textContent = "Loading..."
+
+      fetch(apiUrl)
+        .then(function (response) {
+          return response.json()
+        }).then(function (data) {
+          console.log(data)
+          if (data) {
+            EmployeeList.textContent = ''
+            for (let i = 0; i < data.length; i++) {
+              const listElement = document.createElement('li')
+              listElement.textContent = `${data[i].name} - ${data[i].gender} - ${data[i].department}`
+
+              EmployeeList.appendChild(listElement)
+            }
+          }
+        })
+    }
+
+    getEmployeeList()
+  </script>
+</body>
+
+</html>
