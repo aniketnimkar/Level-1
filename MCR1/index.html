@@ -9,46 +9,54 @@
 </head>
 
 <body>
-  <header>
-    <a href="index.html">
-      <h1>CarZone</h1>
-    </a>
-    <ul>
-      <li>
-        <a href="index.html">Home</a>
-      </li>
-      <li>
-        <a href="cars.html">cars</a>
-      </li>
-      <li>
-        <a href="carBrands.html">Car Brands</a>
-      </li>
-      <li>
-        <a href="report.html">Report</a>
-      </li>
-    </ul>
-  </header>
-  <section>
-    <img src="https://placehold.co/450x300?text=Car-Banner" />
-  </section>
-  <section>
-    <h2>Cars</h2>
-    <p>Discover, explore, and enjoy a world of cars</p>
-    <a href="cars.html">Expolore Cars</a>
-  </section>
-  <section>
-    <h2>Cars Brands</h2>
-    <p>Discover, explore, and enjoy a world of cars</p>
-    <a href="carBrands.html">Expolore Brands</a>
-  </section>
-  <section>
-    <h2>Cars Report</h2>
-    <p>Explore our latest car report to gain insights into our automotive performance and growth.</p>
-    <a href="report.html">View Reports</a>
-  </section>
-  <footer>
-    <p>&copy; 2023 Car Zone. All rights reserved. </p>
-  </footer>
+  <label>Choose your gender:</label><br>
+  <input type="radio" name="gender" value="Male" /> Male <br>
+  <input type="radio" name="gender" value="Female" /> Female <br>
+  <input type="radio" name="gender" value="other" /> Other
+  <p id="genderResult"></p>
+
+  <label>Choose your meal preferance:</label><br>
+  <input type="radio" name="meal" value="Vegetarian" /> Vegetarian <br>
+  <input type="radio" name="meal" value="Non-vegetarian" /> Non-Vegetarian
+  <p id="mealPreferanceResult"></p>
+
+  <label>Choose a size:</label><br>
+  <input type="radio" name="size" value="Small" /> Small <br>
+  <input type="radio" name="size" value="Medium" /> Medium <br>
+  <input type="radio" name="size" value="Large" /> Large
+  <p id="sizeResult"></p>
+
+  <script>
+    const genderRadioBtn = document.getElementsByName("gender")
+    const genderResult = document.getElementById("genderResult")
+
+    for (let i = 0; i < genderRadioBtn.length; i++) {
+      genderRadioBtn[i].addEventListener("change", function () {
+        const selectedRadioBtn = document.querySelector('input[name="gender"]:checked').value
+
+        genderResult.textContent = `Selected Gender: ${selectedRadioBtn}`
+      })
+    }
+
+    const mealRadioBtn = document.getElementsByName("meal")
+    const mealPreferanceResult = document.getElementById("mealPreferanceResult")
+
+    for (let i = 0; i < mealRadioBtn.length; i++) {
+      mealRadioBtn[i].addEventListener("change", function () {
+        const selectedMealPreferance = document.querySelector('input[name="meal"]:checked').value
+        mealPreferanceResult.textContent = `Selected Meal Preference: ${selectedMealPreferance}`
+      })
+    }
+
+    const sizeRadioBtn = document.getElementsByName("size")
+    const sizeResult = document.getElementById("sizeResult")
+    for (let i = 0; i < sizeRadioBtn.length; i++) {
+      sizeRadioBtn[i].addEventListener("change", function () {
+        const selectedSize = document.querySelector(`input[name="size"]:checked`).value
+        sizeResult.textContent = `Selected Size: ${selectedSize}`
+      })
+    }
+  </script>
 </body>
 
 </html>
