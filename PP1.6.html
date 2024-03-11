@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <section>
+    <h1>Number Classification</h1>
+    <h2>Classified Array:</h2>
+    <ul id="result"></ul>
+  </section>
+  <script>
+    const numbers = [2, -5, 6, 7, -8, 0, 10, 23, -13, 14, 18, -32];
+    for (let i = 0; i < numbers.length; i++) {
+      if (numbers[i] > 0 && numbers[i] < 10) {
+        const li = document.createElement('li')
+        li.textContent = `${numbers[i]} - Single Digit Positive Number`
+        result.appendChild(li)
+      } else if (numbers[i] === 0) {
+        const li = document.createElement('li')
+        li.textContent = `${numbers[i]} - Zero`
+        result.appendChild(li)
+      } else if (numbers[i] < 0 && numbers[i] > -10) {
+        const li = document.createElement('li')
+        li.textContent = `${numbers[i]} - Single Digit Negative Number`
+        result.appendChild(li)
+      } else if (numbers[i] >= 10 && numbers[i] <= 90) {
+        const li = document.createElement('li')
+        li.textContent = `${numbers[i]} - Double Digit Positive Number`
+        result.appendChild(li)
+      } else if (numbers[i] < -10 && numbers[i] > -90) {
+        const li = document.createElement('li')
+        li.textContent = `${numbers[i]} - Double Digit Negative Number`
+        result.appendChild(li)
+      }
+    }
+  </script>
+</body>
+
+</html>

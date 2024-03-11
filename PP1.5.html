@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <section>
+    <h1>Capitalize Word Program</h1>
+    <label for="getInput">Enter a Sentence:</label>
+    <input type="text" id="getInput" />
+    <button id="capitalizeBtn">Capitalize Words</button>
+    <p id="showOutput"></p>
+  </section>
+  <script>
+    const getInput = document.querySelector("#getInput");
+    const capitalizeBtn = document.querySelector("#capitalizeBtn");
+    const showOutput = document.querySelector("#showOutput");
+
+    capitalizeBtn.addEventListener('click', function () {
+      const words = getInput.value.split(' ')
+
+      if (words.length < 4) {
+        for (let i = 0; i < words.length; i++) {
+          words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+          console.log(words[i][0])
+        }
+      } else {
+        words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1);
+        console.log(words[0])
+      }
+      showOutput.textContent = words.join(' ')
+
+    })
+  </script>
+</body>
+
+</html>
