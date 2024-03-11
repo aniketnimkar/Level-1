@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <section>
+    <button id="btn1">Increment Count 1</button>
+    <button id="btn2">Increment Count 2</button>
+    <br>
+    <br>
+    <div id="output1">Count 1:<span id="count1"></span></div>
+    <div id="output2">Count 2:<span id="count2"></span></div>
+  </section>
+  <script>
+    let counts1 = 0
+    let counts2 = 0
+    btn1.addEventListener('click', function () {
+      counts1++
+      count1.textContent = ` ${counts1}`
+    })
+    btn2.addEventListener('click', function () {
+      counts2 = counts2 + 2
+      count2.textContent = ` ${counts2}`
+    })
+  </script>
+</body>
+
+</html>

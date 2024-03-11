@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <label>Enter color</label>
+  <input type="text" id="color" placeholder="eg.#00ff00">
+  <button id="btn1">Color Change Section 1</button>
+  <button id="btn2">Color Change Section 2</button>
+  <div id="invalid"></div>
+  <br>
+  <div id="section1" style="background-color: rgb(141, 141, 187);">Section 1</div>
+  <div id="section2" style="background-color: rgb(96, 180, 96);">Section 2</div>
+
+
+
+  <script>
+    const color = document.querySelector('#color')
+    const btn1 = document.querySelector('#btn1')
+    const btn2 = document.querySelector('#btn2')
+    const section1 = document.querySelector('#section1')
+    const section2 = document.querySelector('#section2')
+    const invalid = document.querySelector('#invalid')
+
+    const changeBg = (sec) => {
+      sec.style.backgroundColor = color.value;
+    };
+
+    btn1.addEventListener('click', function () {
+      if (color.value !== '') {
+        invalid.textContent = ''
+        changeBg(section1)
+      } else {
+        invalid.textContent = "Invalid color format. Please enter a valid color (e.g., #00ff00)"
+      }
+    })
+    btn2.addEventListener('click', function () {
+      if (color.value !== '') {
+        invalid.textContent = ''
+        changeBg(section2)
+      } else {
+        invalid.textContent = "Invalid color format. Please enter a valid color (e.g., #00ff00)"
+      }
+    })
+  </script>
+
+</body>
+
+</html>
