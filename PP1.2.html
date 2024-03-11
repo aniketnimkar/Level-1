@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <main>
+    <h1>Prime Fizz Buzz Program Output</h1>
+    <ul id="showData"></ul>
+  </main>
+  <script>
+    const showData = document.querySelector("#showData");
+    const isPrime = (num) => {
+      if (num <= 1) {
+        return false
+      }
+      for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) {
+          return false
+        }
+      }
+      return true;
+    }
+
+    const generatecode = () => {
+      let arr = []
+      for (let i = 1; i <= 30; i++) {
+        if (isPrime(i) && i % 3 === 0 && i % 5 === 0) {
+          arr.push("FizzBuzzPrime");
+        } else if (isPrime(i) && i % 3 === 0) {
+          arr.push("FizzPrime");
+        } else if (isPrime(i) && i % 5 === 0) {
+          arr.push("BuzzPrime");
+        } else if (isPrime(i)) {
+          arr.push("Prime");
+        } else if (i % 3 === 0) {
+          arr.push("Fizz");
+        } else if (i % 5 === 0) {
+          arr.push("Buzz");
+        } else {
+          arr.push(i);
+        }
+      }
+      return arr;
+    }
+
+    const displayFizzBuzzPrime = (array) => {
+      for (let i = 0; i < array.length; i++) {
+        const li = document.createElement("li")
+        li.textContent = array[i]
+        showData.appendChild(li)
+      }
+    }
+    displayFizzBuzzPrime(generatecode())
+  </script>
+</body>
+
+</html>
