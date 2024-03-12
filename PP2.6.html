@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <main>
+    <button id="btn1">Decrement Count 1</button>
+    <button id="btn2">Decrement Count 2</button>
+
+    <p>Count 1: <span id="span1">20</span></p>
+    <p>Count 2: <span id="span2">20</span></p>
+    <p>Toal Count: <span id="span3">40</span></p>
+  </main>
+
+  <script>
+    const btn1 = document.querySelector("#btn1");
+    const btn2 = document.querySelector("#btn2");
+    const span1 = document.querySelector("#span1");
+    const span2 = document.querySelector("#span2");
+    const span3 = document.querySelector("#span3");
+
+    let count1 = 20;
+    let count2 = 20;
+    let totalCount = count1 + count2
+
+    btn1.addEventListener('click', function () {
+      count1--
+      span1.innerHTML = count1
+      totalCount = count1 + count2
+      span3.innerHTML = totalCount
+    })
+    btn2.addEventListener('click', function () {
+      count2--
+      span2.innerHTML = count2
+      totalCount = count1 + count2
+      span3.innerHTML = totalCount
+    })
+  </script>
+</body>
+
+</html>

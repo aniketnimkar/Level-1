@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <section>
+    <button id="btn1">Increment Count1</button>
+    <button id="btn2">Increment Count1</button>
+    <p>Count 1: <span id="span1"></span></p>
+    <p>Count 2: <span id="span2"></span></p>
+    <p id="showMsg"></p>
+  </section>
+  <script>
+    const btn1 = document.querySelector("#btn1")
+    const btn2 = document.querySelector("#btn2")
+    const span1 = document.querySelector("#span1")
+    const span2 = document.querySelector("#span2")
+    const showMsg = document.querySelector("#showMsg")
+    let counts1 = 0
+    let counts2 = 0
+    btn1.addEventListener('click', function () {
+      counts1++
+      span1.innerHTML = counts1
+      if (counts1 > counts2) {
+        showMsg.textContent = "Count1 is more then Count 2"
+      } else if (counts1 === counts2) {
+        showMsg.textContent = "Count1 is equal to count 2."
+      } else {
+        showMsg.textContent = "Count2 is more then count 1."
+      }
+    })
+    btn2.addEventListener('click', function () {
+      counts2++
+      span2.innerHTML = counts2
+      if (counts2 > counts1) {
+        showMsg.textContent = "Count2 is more then Count 1"
+      } else if (counts1 === counts2) {
+        showMsg.textContent = "Count2 is equal to count 1."
+      } else {
+        showMsg.textContent = "Count1 is more then count 2."
+      }
+    })
+  </script>
+</body>
+
+</html>

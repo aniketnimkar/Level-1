@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <section>
+    <button id="btn1">Increment Count 1</button>
+    <button id="btn2">Increment Count 2</button>
+    <br>
+    <br>
+    <div id="output1">Count 1:<span id="span1">0</span></div>
+    <div id="output2">Count 2:<span id="span2">0</span></div>
+    <div id="total">Total Count:<span id="span3">0</span></div>
+  </section>
+  <script>
+    const btn1 = document.querySelector("#btn1");
+    const btn2 = document.querySelector("#btn2");
+    const output1 = document.querySelector("#output1");
+    const output2 = document.querySelector("#output2");
+    const total = document.querySelector("#total");
+    const span1 = document.querySelector("#span1");
+    const span2 = document.querySelector("#span2");
+    const span3 = document.querySelector("#span3");
+
+    let counts1 = 0
+    let counts2 = 0
+
+    btn1.addEventListener('click', function () {
+      counts1++
+      span1.innerHTML = counts1;
+      span3.innerHTML = counts1 + counts2
+    })
+    btn2.addEventListener('click', function () {
+      counts2++
+      span2.innerHTML = counts2;
+      span3.innerHTML = counts1 + counts2
+    })
+  </script>
+</body>
+
+</html>
